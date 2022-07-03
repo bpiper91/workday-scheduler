@@ -26,26 +26,26 @@ var checkTime = function() {
     // get current hour as integer string
     var currentHour = currentDate.format('H');
 
-    // get first hour on page as integer string
-    var firstHour = document.querySelector(".hour").dataset.hour;
+    // get first hour on page
+    var firstHour = $(".hour").data("hour");
     // get last hour on page as integer string
     var hourElements = document.getElementsByClassName("hour");  // get all hour elements as array
     var lastHour = hourElements[hourElements.length - 1].dataset.hour;  // get last item in array
 
     // add styling to each time block according to current time
-    for (i = parseInt(firstHour); i < parseInt(lastHour) + 1; i++) {
+    for (i = firstHour; i < lastHour + 1; i++) {
         // add .past to past hours
         if (i < parseInt(currentHour)) {
-            document.querySelector("[data-hour='" + i + "']").className = "col-2 col-lg-1 hour past";
-            document.querySelector("[data-hour='" + i + "']").nextElementSibling.className = "col-8 col-lg-10 description past";
+            $("[data-hour='" + i + "']").addClass("col-2 col-lg-1 hour past");
+            $("[data-hour='" + i + "']").next().addClass("col-8 col-lg-10 description past");
         // add .present to the current hour
         } else if (i === parseInt(currentHour)) {
-            document.querySelector("[data-hour='" + i + "']").className = "col-2 col-lg-1 hour present";
-            document.querySelector("[data-hour='" + i + "']").nextElementSibling.className = "col-8 col-lg-10 description present";
+            $("[data-hour='" + i + "']").addClass("col-2 col-lg-1 hour present");
+            $("[data-hour='" + i + "']").next().addClass("col-8 col-lg-10 description present");
         // add .future to future hours
         } else {
-            document.querySelector("[data-hour='" + i + "']").className = "col-2 col-lg-1 hour future";
-            document.querySelector("[data-hour='" + i + "']").nextElementSibling.className = "col-8 col-lg-10 description future";
+            $("[data-hour='" + i + "']").addClass("col-2 col-lg-1 hour future");
+            $("[data-hour='" + i + "']").next().addClass("col-8 col-lg-10 description future");
         };
     };
 };
